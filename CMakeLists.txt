@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.16)
-set(CMAKE_TOOLCHAIN_FILE ${CMAKE_CURRENT_SOURCE_DIR}/cmake/stm32_gcc.cmake)
+set(CMAKE_TOOLCHAIN_FILE ${CMAKE_CURRENT_SOURCE_DIR}/stm32-cmake/cmake/stm32_gcc.cmake)
 set (CMAKE_CXX_STANDARD 23)
 
 project(zhele_template CXX C ASM)
@@ -30,6 +30,8 @@ add_executable(zhele_template ${PROJECT_SOURCES})
 target_link_libraries(zhele_template zhele::zhele CMSIS::STM32::F103C8 STM32::NoSys STM32::Nano)
 # Recommended options for stm32 dev
 target_compile_options(zhele_template PRIVATE -fno-exceptions -fno-rtti -ffunction-sections -fdata-sections)
+# Preprocessor options
+target_compile_definitions(zhele_template PRIVATE FCPU=80000000)
 
 # Print size
 stm32_print_size_of_target(zhele_template)

@@ -1,6 +1,3 @@
-// Define target cpu frequence.
-#define F_CPU 8000000
-
 #include <zhele/iopins.h>
 
 using namespace Zhele::IO;
